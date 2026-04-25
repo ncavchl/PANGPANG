@@ -5,6 +5,7 @@ import CreatePoll from "./pages/CreatePoll";
 import Management from "./pages/Management";
 import PenguinLogo from "./components/PenguinLogo";
 import "./App.css";
+import DbTest from "./pages/DbTest";
 
 function App() {
   return (
@@ -19,8 +20,18 @@ function App() {
               </h1>
             </Link>
             <nav className="flex gap-6">
-              <Link to="/" className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors">홈</Link>
-              <Link to="/create" className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors">투표 만들기</Link>
+              <Link
+                to="/"
+                className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors"
+              >
+                홈
+              </Link>
+              <Link
+                to="/create"
+                className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors"
+              >
+                투표 만들기
+              </Link>
             </nav>
           </div>
         </header>
@@ -31,6 +42,7 @@ function App() {
             <Route path="/poll/:id" element={<PollDetail />} />
             <Route path="/create" element={<CreatePoll />} />
             <Route path="/poll/:id/manage" element={<Management />} />
+            <Route path="/db" element={<DbTest />} />
           </Routes>
         </main>
 
