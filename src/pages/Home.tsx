@@ -43,7 +43,7 @@ const Home: React.FC = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {getSortedPolls().map((poll) => {
           const total = poll.votesA + poll.votesB;
           const percentA = Math.round((poll.votesA / total) * 100);
@@ -54,49 +54,49 @@ const Home: React.FC = () => {
             <Link 
               key={poll.id} 
               to={`/poll/${poll.id}`} 
-              className="group block bg-white p-7 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all border-2 border-transparent hover:border-penguin-yellow"
+              className="group block bg-white p-6 md:p-8 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all border-2 border-transparent hover:border-penguin-yellow"
             >
               <div className="flex justify-between items-center mb-6">
                 <div className="flex gap-2">
-                  {isHot && <span className="bg-penguin-yellow text-penguin-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">Super Hot</span>}
-                  <span className="text-[10px] text-gray-500 font-bold px-3 py-1 bg-gray-50 rounded-full uppercase tracking-wider">
+                  {isHot && <span className="bg-penguin-yellow text-penguin-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase shadow-sm">Hot</span>}
+                  <span className="text-[10px] text-gray-500 font-bold px-3 py-1 bg-gray-50 rounded-full">
                     {total}명 참여
                   </span>
                 </div>
-                <span className="text-xs text-gray-500 font-bold bg-gray-100 px-3 py-1 rounded-full">
+                <span className="text-[11px] text-gray-400 font-black">
                   {formatRelativeTime(poll.createdAt)}
                 </span>
               </div>
               
-              <h2 className="font-black text-xl mb-8 group-hover:text-penguin-black transition-colors line-clamp-2 leading-tight h-[3.5rem] overflow-hidden">
-                {poll.title}
-              </h2>
+              <div className="mb-6 min-h-[3.5rem] md:min-h-[4rem] flex flex-col justify-center">
+                <h2 className="font-black text-lg md:text-xl group-hover:text-penguin-black transition-colors line-clamp-2 leading-[1.4]">
+                  {poll.title}
+                </h2>
+              </div>
 
-              <div className="space-y-6">
-                <div className="w-full bg-gray-100 h-12 rounded-2xl overflow-hidden flex shadow-inner border-2 border-gray-50">
+              <div className="space-y-4">
+                {/* 포맷 변경: 표 수(퍼센트) */}
+                <div className="flex px-4 text-xs md:text-sm font-black text-penguin-black h-5 items-end transition-all duration-1000">
+                   <div style={{ width: `${percentA}%` }} className="text-left leading-none whitespace-nowrap">
+                     {poll.votesA}표<span className="text-[10px] md:text-xs opacity-40 ml-1">({percentA}%)</span>
+                   </div>
+                   <div style={{ width: `${percentB}%` }} className="text-right leading-none whitespace-nowrap">
+                     <span className="text-[10px] md:text-xs opacity-40 mr-1">({percentB}%)</span>{poll.votesB}표
+                   </div>
+                </div>
+
+                <div className="w-full bg-gray-100 h-9 md:h-10 rounded-2xl overflow-hidden flex shadow-inner border-2 border-gray-50">
                   <div className="bg-penguin-black h-full transition-all duration-1000 flex items-center px-4" style={{ width: `${percentA}%` }}>
-                    <span className="text-xs font-black text-penguin-yellow italic">A</span>
+                    <span className="text-xs md:text-sm font-black text-penguin-yellow italic">A</span>
                   </div>
                   <div className="bg-penguin-yellow h-full transition-all duration-1000 flex items-center justify-end px-4" style={{ width: `${percentB}%` }}>
-                    <span className="text-xs font-black text-penguin-black italic">B</span>
+                    <span className="text-xs md:text-sm font-black text-penguin-black italic">B</span>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 bg-penguin-black rounded-md" />
-                      <span className="text-penguin-black text-xl font-black">{percentA}%</span>
-                    </div>
-                    <span className="text-gray-400 font-bold text-xs line-clamp-1">{poll.optionA}</span>
-                  </div>
-                  <div className="flex flex-col gap-1 items-end text-right">
-                    <div className="flex items-center gap-2">
-                      <span className="text-penguin-black text-xl font-black">{percentB}%</span>
-                      <div className="w-4 h-4 bg-penguin-yellow rounded-md shadow-sm" />
-                    </div>
-                    <span className="text-gray-400 font-bold text-xs line-clamp-1">{poll.optionB}</span>
-                  </div>
+                <div className="flex justify-between gap-4 px-1 pt-1">
+                  <span className="text-gray-400 font-bold text-[11px] line-clamp-1 flex-1">{poll.optionA}</span>
+                  <span className="text-gray-400 font-bold text-[11px] line-clamp-1 flex-1 text-right">{poll.optionB}</span>
                 </div>
               </div>
             </Link>
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
 
       <Link 
         to="/create" 
-        className="fixed bottom-8 right-8 w-20 h-20 bg-penguin-yellow text-penguin-black rounded-full text-5xl shadow-2xl flex items-center justify-center hover:bg-penguin-black hover:text-penguin-yellow hover:scale-110 active:scale-95 transition-all z-20 border-8 border-white"
+        className="fixed bottom-8 right-8 w-16 h-16 md:w-20 md:h-20 bg-penguin-yellow text-penguin-black rounded-full text-4xl md:text-5xl shadow-2xl flex items-center justify-center hover:bg-penguin-black hover:text-penguin-yellow hover:scale-110 active:scale-95 transition-all z-20 border-4 md:border-8 border-white"
       >
         <span className="mb-1 font-black">+</span>
       </Link>
