@@ -12,7 +12,7 @@ function App() {
         <header className="bg-white border-b sticky top-0 z-10 shadow-sm">
           <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
             <Link to="/" className="text-2xl font-black text-blue-600 tracking-tighter hover:opacity-80 transition-opacity">
-              PANGPANG
+              PANGPANG 입니다
             </Link>
             <nav className="flex gap-6">
               <Link to="/" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">홈</Link>
