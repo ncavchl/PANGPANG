@@ -1,125 +1,42 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import PollDetail from "./pages/PollDetail";
+import CreatePoll from "./pages/CreatePoll";
+import Management from "./pages/Management";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1 className="text-6xl font-extrabold tracking-tight sm:text-7xl mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 animate-gradient-x">
-              Welcome PangPang
-            </span>
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            Edit <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <Router>
+      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+        <header className="bg-white border-b sticky top-0 z-10 shadow-sm">
+          <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
+            <Link to="/" className="text-2xl font-black text-blue-600 tracking-tighter hover:opacity-80 transition-opacity">
+              PANGPANG
+            </Link>
+            <nav className="flex gap-6">
+              <Link to="/" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">홈</Link>
+              <Link to="/create" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">투표 만들기</Link>
+            </nav>
+          </div>
+        </header>
 
-      <div className="ticks"></div>
+        <main className="max-w-4xl mx-auto py-6 px-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/poll/:id" element={<PollDetail />} />
+            <Route path="/create" element={<CreatePoll />} />
+            <Route path="/poll/:id/manage" element={<Management />} />
+          </Routes>
+        </main>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <footer className="border-t py-8 mt-12 bg-white">
+          <div className="max-w-4xl mx-auto px-4 text-center text-gray-400 text-sm">
+            © 2026 PANGPANG. All rights reserved.
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
