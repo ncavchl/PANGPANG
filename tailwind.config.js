@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         penguin: {
-          yellow: 'var(--penguin-yellow)',
-          black: 'var(--penguin-black)',
+          yellow: 'rgb(var(--penguin-yellow) / <alpha-value>)',
+          black: 'rgb(var(--penguin-black) / <alpha-value>)',
           white: '#FFFFFF',
-          gray: 'var(--penguin-gray)',
+          gray: 'rgb(var(--penguin-gray) / <alpha-value>)',
         }
       },
       animation: {

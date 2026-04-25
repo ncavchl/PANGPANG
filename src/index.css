@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  /* 물리적인 색상 정의 */
-  --penguin-yellow: #FFD500;
-  --penguin-black: #1A1A1A;
-  --penguin-gray: #F3F4F6;
+  /* 물리적인 색상 정의 (RGB 값만 정의하여 Tailwind opacity 지원) */
+  --penguin-yellow: 255 213 0;
+  --penguin-black: 26 26 26;
+  --penguin-gray: 243 244 246;
   --sans: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 

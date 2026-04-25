@@ -10,9 +10,28 @@ const Home: React.FC = () => {
     const polls = [...MOCK_POLLS];
     if (filter === 'hot') {
       return polls.sort((a, b) => {
-        const diffA = Math.abs((a.votesA / (a.votesA + a.votesB)) - 0.5);
-        const diffB = Math.abs((b.votesA / (b.votesA + b.votesB)) - 0.5);
-        return diffA - diffB;
+        const totalA = a.votesA + a.votesB;
+        const totalB = b.votesA + b.votesB;
+        const ratioA = a.votesA / totalA;
+        const ratioB = b.votesA / totalB;
+        const diffA = Math.abs(ratioA - 0.5);
+        const diffB = Math.abs(ratioB - 0.5);
+        
+        // 1. >10 votes 50/50 (Tier 1)
+        const isTier1A = totalA > 10 && a.votesA === a.votesB;
+        const isTier1B = totalB > 10 && b.votesA === b.votesB;
+        if (isTier1A !== isTier1B) return isTier1A ? -1 : 1;
+        
+        // 2. >10 votes 45-55% range (Tier 2)
+        const isTier2A = totalA > 10 && diffA <= 0.05;
+        const isTier2B = totalB > 10 && diffB <= 0.05;
+        if (isTier2A !== isTier2B) return isTier2A ? -1 : 1;
+        
+        // 3. All others (Tier 3) - includes <= 10 votes, or >10 votes outside 45-55%
+        if (Math.abs(diffA - diffB) > 0.001) return diffA - diffB;
+        
+        // 4. Same ratio: Higher total votes first
+        return totalB - totalA;
       });
     }
     if (filter === 'popular') {
@@ -48,7 +67,7 @@ const Home: React.FC = () => {
           const total = poll.votesA + poll.votesB;
           const percentA = Math.round((poll.votesA / total) * 100);
           const percentB = 100 - percentA;
-          const isHot = Math.abs(percentA - 50) <= 5;
+          const isHot = Math.abs(percentA - 50) <= 5 && (total > 10 || percentA !== 50);
 
           return (
             <Link 
@@ -57,9 +76,13 @@ const Home: React.FC = () => {
               className="group block bg-white p-6 md:p-8 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgb(0,0,0,0.1)] hover:-translate-y-2 transition-all border-2 border-transparent hover:border-penguin-yellow"
             >
               <div className="flex justify-between items-center mb-6">
-                <div className="flex gap-2">
-                  {isHot && <span className="bg-penguin-yellow text-penguin-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase shadow-sm">Hot</span>}
-                  <span className="text-[10px] text-gray-500 font-bold px-3 py-1 bg-gray-50 rounded-full">
+                <div className="flex gap-2 h-6">
+                  {isHot && (
+                    <span className="flex items-center justify-center bg-penguin-yellow text-penguin-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                      팽팽🔥
+                    </span>
+                  )}
+                  <span className="flex items-center justify-center text-[10px] text-gray-500 font-bold px-3 py-1 bg-gray-50 rounded-full">
                     {total}명 참여
                   </span>
                 </div>
@@ -75,13 +98,15 @@ const Home: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                {/* 포맷 변경: 표 수(퍼센트) */}
-                <div className="flex px-4 text-xs md:text-sm font-black text-penguin-black h-5 items-end transition-all duration-1000">
-                   <div style={{ width: `${percentA}%` }} className="text-left leading-none whitespace-nowrap">
-                     {poll.votesA}표<span className="text-[10px] md:text-xs opacity-40 ml-1">({percentA}%)</span>
+                {/* 고정된 위치 표기: Flex justify-between 사용 */}
+                <div className="flex justify-between px-1 text-penguin-black items-end h-10">
+                   <div className="flex flex-col items-start">
+                      <span className="text-sm md:text-base font-black leading-none">{poll.votesA}표</span>
+                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentA}%)</span>
                    </div>
-                   <div style={{ width: `${percentB}%` }} className="text-right leading-none whitespace-nowrap">
-                     <span className="text-[10px] md:text-xs opacity-40 mr-1">({percentB}%)</span>{poll.votesB}표
+                   <div className="flex flex-col items-end">
+                      <span className="text-sm md:text-base font-black leading-none">{poll.votesB}표</span>
+                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentB}%)</span>
                    </div>
                 </div>
 

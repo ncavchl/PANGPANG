@@ -74,7 +74,7 @@ const PollDetail: React.FC = () => {
               className="group relative p-8 md:p-10 bg-penguin-black rounded-[2rem] md:rounded-[2.5rem] text-left hover:scale-[1.03] transition-all shadow-xl shadow-black/20 overflow-hidden"
             >
               <span className="text-[10px] font-black text-penguin-yellow/50 uppercase tracking-widest mb-3 block">Option A</span>
-              <p className="font-black text-white text-lg md:text-xl leading-snug relative z-10">{poll.optionA}</p>
+              <p className="font-black text-penguin-yellow text-lg md:text-xl leading-snug relative z-10">{poll.optionA}</p>
               <span className="absolute -right-4 -bottom-4 text-8xl md:text-9xl opacity-10 font-black text-white italic">A</span>
             </button>
             <button 
@@ -89,10 +89,10 @@ const PollDetail: React.FC = () => {
         ) : (
           <div className="space-y-10 md:space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="space-y-10">
-              {/* Option A Result: Stacked Votes and Percentage */}
+              {/* Option A Result: Fixed Alignment */}
               <div className="space-y-3">
-                <div className="flex justify-between items-end px-2">
-                  <span className={`text-lg md:text-2xl font-black ${voted === 'A' ? 'text-penguin-black' : 'text-gray-300'}`}>
+                <div className="flex justify-between items-end px-2 text-left">
+                  <span className={`text-lg md:text-2xl font-black ${voted === 'A' ? 'text-penguin-black' : 'text-gray-400'}`}>
                     {poll.optionA} {voted === 'A' && '✅'}
                   </span>
                 </div>
@@ -102,16 +102,16 @@ const PollDetail: React.FC = () => {
                       <span className="font-black text-penguin-yellow text-lg md:text-xl italic">A</span>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end w-24 md:w-32">
-                    <span className="text-2xl md:text-4xl font-black text-penguin-black leading-none tabular-nums">{currentVotesA}표</span>
-                    <span className="text-sm md:text-lg font-bold text-gray-400 mt-1 tabular-nums">({percentA}%)</span>
+                  <div className="flex flex-col items-end w-24 md:w-32 flex-shrink-0">
+                    <span className="text-2xl md:text-4xl font-black text-penguin-black leading-none tabular-nums text-right">{currentVotesA}표</span>
+                    <span className="text-sm md:text-lg font-bold text-gray-400 mt-1 tabular-nums text-right">({percentA}%)</span>
                   </div>
                 </div>
               </div>
 
-              {/* Option B Result: Stacked Votes and Percentage */}
+              {/* Option B Result: Fixed Alignment */}
               <div className="space-y-3">
-                <div className="flex justify-between items-end px-2">
+                <div className="flex justify-between items-end px-2 text-left">
                   <span className={`text-lg md:text-2xl font-black ${voted === 'B' ? 'text-penguin-black' : 'text-gray-300'}`}>
                     {poll.optionB} {voted === 'B' && '✅'}
                   </span>
@@ -122,9 +122,9 @@ const PollDetail: React.FC = () => {
                       <span className="font-black text-penguin-black text-lg md:text-xl italic">B</span>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end w-24 md:w-32">
-                    <span className="text-2xl md:text-4xl font-black text-penguin-black leading-none tabular-nums">{currentVotesB}표</span>
-                    <span className="text-sm md:text-lg font-bold text-gray-400 mt-1 tabular-nums">({percentB}%)</span>
+                  <div className="flex flex-col items-end w-24 md:w-32 flex-shrink-0">
+                    <span className="text-2xl md:text-4xl font-black text-penguin-black leading-none tabular-nums text-right">{currentVotesB}표</span>
+                    <span className="text-sm md:text-lg font-bold text-gray-400 mt-1 tabular-nums text-right">({percentB}%)</span>
                   </div>
                 </div>
               </div>
