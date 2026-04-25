@@ -16,7 +16,7 @@ function App() {
             <Link to="/" className="flex items-center gap-2 group">
               <PenguinLogo className="w-10 h-10 group-hover:rotate-12 transition-transform duration-300" />
               <h1 className="text-2xl font-black text-penguin-yellow tracking-tighter">
-                PANGPANG (test)
+                PANGPANG
               </h1>
             </Link>
             <nav className="flex gap-6">
