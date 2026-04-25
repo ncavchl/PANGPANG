@@ -3,6 +3,14 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        penguin: {
+          yellow: 'var(--penguin-yellow)',
+          black: 'var(--penguin-black)',
+          white: '#FFFFFF',
+          gray: 'var(--penguin-gray)',
+        }
+      },
       animation: {
         'gradient-x': 'gradient-x 3s ease infinite',
       },
