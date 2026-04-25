@@ -12,6 +12,7 @@ const PollDetail: React.FC = () => {
 
   const total = poll.votesA + poll.votesB + (voted ? 1 : 0);
   const currentVotesA = poll.votesA + (voted === 'A' ? 1 : 0);
+  const currentVotesB = poll.votesB + (voted === 'B' ? 1 : 0);
   
   const percentA = Math.round((currentVotesA / total) * 100);
   const percentB = 100 - percentA;
