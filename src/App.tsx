@@ -3,20 +3,24 @@ import Home from "./pages/Home";
 import PollDetail from "./pages/PollDetail";
 import CreatePoll from "./pages/CreatePoll";
 import Management from "./pages/Management";
+import PenguinLogo from "./components/PenguinLogo";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-        <header className="bg-white border-b sticky top-0 z-10 shadow-sm">
+      <div className="min-h-screen bg-penguin-gray text-penguin-black font-sans">
+        <header className="bg-penguin-black border-b border-white/10 sticky top-0 z-10 shadow-lg">
           <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-            <Link to="/" className="text-2xl font-black text-blue-600 tracking-tighter hover:opacity-80 transition-opacity">
-              PANGPANG 입니다
+            <Link to="/" className="flex items-center gap-2 group">
+              <PenguinLogo className="w-10 h-10 group-hover:rotate-12 transition-transform duration-300" />
+              <h1 className="text-2xl font-black text-penguin-yellow tracking-tighter">
+                PANGPANG
+              </h1>
             </Link>
             <nav className="flex gap-6">
-              <Link to="/" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">홈</Link>
-              <Link to="/create" className="text-sm font-semibold text-gray-600 hover:text-blue-600 transition-colors">투표 만들기</Link>
+              <Link to="/" className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors">홈</Link>
+              <Link to="/create" className="text-sm font-bold text-white/80 hover:text-penguin-yellow transition-colors">투표 만들기</Link>
             </nav>
           </div>
         </header>
