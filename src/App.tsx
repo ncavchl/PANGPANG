@@ -16,9 +16,13 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Welcome PangPang</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+          <h1 className="text-6xl font-extrabold tracking-tight sm:text-7xl mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 animate-gradient-x">
+              Welcome PangPang
+            </span>
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">
+            Edit <code className="bg-gray-100 dark:bg-gray-800 px-1 rounded">src/App.tsx</code> and save to test <code>HMR</code>
           </p>
         </div>
         <button
