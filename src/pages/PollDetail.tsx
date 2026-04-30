@@ -98,8 +98,8 @@ const PollDetail: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-4 md:gap-8">
                   <div className="flex-1 bg-gray-100 h-14 md:h-16 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex shadow-inner border-4 border-gray-100">
-                    <div className="bg-penguin-black h-full transition-all duration-1000 flex items-center px-6" style={{ width: `${percentA}%` }}>
-                      <span className="font-black text-penguin-yellow text-lg md:text-xl italic">A</span>
+                    <div className="bg-penguin-black h-full transition-all duration-1000 relative min-w-0" style={{ width: `${percentA}%` }}>
+                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-penguin-yellow text-lg md:text-xl italic whitespace-nowrap">A</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-end w-24 md:w-32 flex-shrink-0">
@@ -118,8 +118,8 @@ const PollDetail: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-4 md:gap-8">
                   <div className="flex-1 bg-gray-100 h-14 md:h-16 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex shadow-inner border-4 border-gray-100">
-                    <div className="bg-penguin-yellow h-full transition-all duration-1000 flex items-center px-6" style={{ width: `${percentB}%` }}>
-                      <span className="font-black text-penguin-black text-lg md:text-xl italic">B</span>
+                    <div className="bg-penguin-yellow h-full transition-all duration-1000 relative min-w-0" style={{ width: `${percentB}%` }}>
+                      <span className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-penguin-black text-lg md:text-xl italic whitespace-nowrap">B</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-end w-24 md:w-32 flex-shrink-0">

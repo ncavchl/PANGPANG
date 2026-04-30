@@ -98,16 +98,9 @@ const Home: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                {/* 고정된 위치 표기: Flex justify-between 사용 */}
-                <div className="flex justify-between px-1 text-penguin-black items-end h-10">
-                   <div className="flex flex-col items-start">
-                      <span className="text-sm md:text-base font-black leading-none">{poll.votesA}표</span>
-                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentA}%)</span>
-                   </div>
-                   <div className="flex flex-col items-end">
-                      <span className="text-sm md:text-base font-black leading-none">{poll.votesB}표</span>
-                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentB}%)</span>
-                   </div>
+                <div className="flex justify-between gap-4 px-1">
+                  <span className="text-penguin-black font-black text-xs md:text-sm line-clamp-1 flex-1">{poll.optionA}</span>
+                  <span className="text-penguin-black font-black text-xs md:text-sm line-clamp-1 flex-1 text-right">{poll.optionB}</span>
                 </div>
 
                 <div className="w-full bg-gray-100 h-9 md:h-10 rounded-2xl overflow-hidden flex shadow-inner border-2 border-gray-50">
@@ -119,9 +112,15 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="flex justify-between gap-4 px-1 pt-1">
-                  <span className="text-gray-400 font-bold text-[11px] line-clamp-1 flex-1">{poll.optionA}</span>
-                  <span className="text-gray-400 font-bold text-[11px] line-clamp-1 flex-1 text-right">{poll.optionB}</span>
+                <div className="flex justify-between px-1 text-penguin-black items-start h-10">
+                   <div className="flex flex-col items-start">
+                      <span className="text-sm md:text-base font-black leading-none">{poll.votesA}표</span>
+                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentA}%)</span>
+                   </div>
+                   <div className="flex flex-col items-end">
+                      <span className="text-sm md:text-base font-black leading-none">{poll.votesB}표</span>
+                      <span className="text-[10px] md:text-xs font-bold text-gray-400 mt-1">({percentB}%)</span>
+                   </div>
                 </div>
               </div>
             </Link>
